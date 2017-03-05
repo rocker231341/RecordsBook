@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecordsBook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,15 @@ namespace RecordsBook.Controllers
         public ActionResult Index()
         {
             return View();
+        }        
+
+        public ActionResult Detail( )
+        {
+            var homeModel = new HomeModel( );
+            var details = homeModel.GetDetails( );
+
+            return PartialView( details );
         }
+
     }
 }

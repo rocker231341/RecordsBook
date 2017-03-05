@@ -9,8 +9,10 @@
 </head>
 <body>
     @Html.Partial("_HeaderPartial")
-    
-    @RenderBody()    
+    <div class="container body-content">
+        @RenderBody()
+        @Html.Partial("_FooterPartial")
+    </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
