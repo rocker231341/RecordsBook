@@ -1,0 +1,32 @@
+﻿
+
+@{
+    var latestDate = ( DateTime ) ViewBag.LatestDate;
+    int latestYear = latestDate.Year;
+    int latestMonth = latestDate.Month;
+    var years = ViewData [ "years" ] as List<int>;
+}
+
+<div class="row">
+    <form id="recordSearchForm">
+        <div class="col-md-2">
+            <select name="year" class="form-control">
+                @foreach ( var year in years )
+                {
+                    <option value="@(year)" @(latestYear == year ? "selected=selected" : "")>@(year)</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-1">            
+            <select name="month" class="form-control">
+                @for ( int month = 1 ; month <= 12 ; month++ )
+                {
+                    <option value="@(month)" @(latestMonth == month ? "selected=selected" : "")>@(month)</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button id="search" class="btn btn-primary" type="button">查詢</button>
+        </div>
+    </form>
+</div>

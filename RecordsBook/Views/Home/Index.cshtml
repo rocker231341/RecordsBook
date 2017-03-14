@@ -1,10 +1,17 @@
 ﻿
+
+@section scripts{
+    <script src="~/Scripts/app.js"></script>
+}
+
 <div class="well">
-    @Html.Partial("_AddPartial")
+    @Html.Partial( "_AddRecordPartial" )
 </div>
 
+@Html.Action( "SearchRecord" )
+
 <div class="row">
-    <div class="col-md-12">
-        @Html.Action("Detail")
+    <div id="recordDetails" class="col-md-12">
+        @Html.Action( "RecordDetails" )
     </div>
 </div>

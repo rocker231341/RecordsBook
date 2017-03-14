@@ -1,4 +1,5 @@
 ﻿using RecordsBook.Models;
+using RecordsBook.Repsitories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,32 @@ namespace RecordsBook.Controllers
     public class HomeController : Controller
     {
         // GET: Homt
-        public ActionResult Index()
+        public ActionResult Index( )
         {
-            return View();
-        }        
+            return View( );
+        }
 
-        public ActionResult Detail( )
+        public ActionResult RecordDetails( int? year, int? month )
         {
-            var homeModel = new HomeModel( );
-            var details = homeModel.GetDetails( );
+            var unitOfWork = new EFUnitOfWork( );
+            var homeService = new HomeService( unitOfWork );           
 
+            var details = homeService.GetRecordDetails( year, month );
             return PartialView( details );
+        }
+
+        [ChildActionOnly]
+        public ActionResult SearchRecord( )
+        {
+            var unitOfWork = new EFUnitOfWork( );
+            var homeService = new HomeService( unitOfWork );
+            var latestDate = homeService.GetLatestRecordDate( );
+            var yeas = homeService.GetSearchYears( );
+
+            ViewBag.LatestDate = latestDate;
+            ViewData [ "years" ] = yeas;
+
+            return PartialView( );
         }
 
     }
